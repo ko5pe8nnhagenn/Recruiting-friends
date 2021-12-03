@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Http\Requests\PostRequest;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -19,18 +20,22 @@ class PostController extends Controller
  * @return Reposnse post view
  */
      public function show(Post $post)
-    {
+     {
+       
         return view('posts/show')->with(['post' => $post]);
     }   
     
-    public function create()
-    {
-         return view('posts/create');
-    }
+    // public function create()
+    // {
+    //      return view('posts/create');
+    // }
     
     public function store(Post $post, PostRequest $request)
     {
+       
         $input = $request['post'];
+         $input += ['user_id' => $request->user()->id]; 
+         
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }
@@ -44,8 +49,8 @@ class PostController extends Controller
         public function update(PostRequest $request, Post $post)
     {
         $input_post = $request['post'];
+       
         $post->fill($input_post)->save();
-    
         return redirect('/posts/' . $post->id);
     }
         
@@ -55,4 +60,8 @@ class PostController extends Controller
         return redirect('/');
     }
 
+         public function create(Category $category)
+    {
+        return view('posts/create')->with(['categories' => $category->get()]);;
+    }
 }

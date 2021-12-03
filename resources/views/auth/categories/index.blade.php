@@ -10,6 +10,7 @@
             <h2 class='title'>
              <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
             </h2>
+            <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
             <a href="">{{ $post->category->name }}</a>
             <p class='body'>{{ $post->body }}</p>
         </div>
@@ -20,5 +21,3 @@
     {{ $posts->links() }}
 </div>
  @endsection   
-
-
