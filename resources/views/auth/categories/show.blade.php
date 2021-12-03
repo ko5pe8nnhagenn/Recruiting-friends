@@ -19,6 +19,7 @@
          <h2 class="title">
             {{ $post->title }}
         </h2>
+        <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
         <small>{{ $post->user->name }}</small>
          <div class="content">
             <div class="content__post">
