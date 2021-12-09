@@ -2,7 +2,7 @@
 @section('content')
 
 
-<h1>Blog Name</h1>
+<h1>Recruiting friends</h1>
 [<a href='/posts/create'>create</a>]
 <div class='posts'>
     @foreach ($posts as $post)
